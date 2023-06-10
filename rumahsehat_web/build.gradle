@@ -1,0 +1,36 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.5'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'java'
+	id 'org.sonarqube' version '3.5.0.2730'
+}
+
+group = 'apap.tugaskelompok'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'mysql:mysql-connector-java:5.1.6'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.3'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'org.jetbrains:annotations:20.1.0'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	compileOnly "org.projectlombok:lombok:1.18.24"
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

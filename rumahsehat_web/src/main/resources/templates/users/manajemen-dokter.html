@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Rumah Sehat</title>
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar('User')"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2 class="d-flex justify-content-center">List Dokter</h2>
+                <br>
+                <div class="d-flex justify-content-center">
+                    <a th:href="@{/manajemen/dokter/add}" class="mx-2 btn btn-outline-warning">+ Tambah Dokter</a>
+                </div>
+                <br><br>
+                <div th:if="*{listDokter.size() != 0}">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Tarif</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="dokter, iterationStatus : ${listDokter}">
+                            <td th:text="${iterationStatus.count}" ></td>
+                            <td th:text="${dokter.nama}"></td>
+                            <td th:text="${dokter.username}"></td>
+                            <td th:text="${dokter.email}"></td>
+                            <td th:text="${dokter.tarif}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:unless="*{listDokter.size() != 0}">
+                    <h2 th:text="'Tidak ada Dokter'"></h2>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+</body>
+</html>

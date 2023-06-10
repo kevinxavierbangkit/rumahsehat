@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rumah Sehat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <title>Rumah Sehat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"></head>
+<body>
+<nav th:replace="fragments/fragment :: navbar('Resep')"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Daftar Resep</h2>
+                <br>
+                <div>
+                <a class="btn btn-primary" th:href="@{/}">Beranda</a>
+                </div>
+                <br>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>ID Resep</th>
+                        <th>Waktu Dibuat</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="resep, iterationStatus : ${listResep}"
+                        th:style="${iterationStatus.even} ? 'background-color:#FFFFF0;'">
+                        <td th:text="${iterationStatus.count}"></td>
+                        <td th:text="${resep.id}"></td>
+                        <td th:text="${resep.createdAt}"></td>
+                        <td th:if="${resep.isDone == false}" th:text="'Belum dikonfirmasi'"></td>
+                        <td th:if="${resep.isDone == true}" th:text="'Dikonfirmasi'"></td>
+                        <td>
+                            <a class="btn btn-sm btn-primary" th:href="@{/resep/view/} + ${resep.id}">Detail Resep</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

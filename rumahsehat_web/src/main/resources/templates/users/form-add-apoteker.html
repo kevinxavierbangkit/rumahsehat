@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <title>Rumah Sehat</title>
+      <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+      <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('User')"></nav>
+<div class="container">
+  <div class="card m-4 p-4">
+    <div class="card-body">
+      <div class="justify-content-center">
+        <h2 class="d-flex justify-content-center">Add Apoteker</h2>
+        <br>
+        <form th:action="@{/manajemen/apoteker/add}" th:object="${apoteker}" method="POST">
+
+          Nama: <br>
+          <input class="form-control" type="text" name="nama" th:field="*{nama}" placeholder="Nama"/>
+          <br><br>
+
+          Username: <br>
+          <input class="form-control" type="text" name="username" th:field="*{username}" placeholder="Username"/>
+          <br><br>
+
+          Password: <br>
+          <input class="form-control" type="text" name="password" th:field="*{password}" placeholder="Password"/>
+          <br><br>
+
+          Email: <br>
+          <input class="form-control" type="text" name="email" th:field="*{email}" placeholder="Email"/>
+          <br><br>
+
+
+          <div class="d-flex justify-content-around">
+            <a th:href="@{/manajemen/apoteker}" class="mx-2 btn text-light" style="padding-left:22px; padding-right:22px; font-family:Verdana; font-weight:bold; background-color: rgb(41, 160, 184);">Kembali</a>
+            <button type="submit" name="save" class="mx-2 btn text-light" style="padding-left:22px; padding-right:22px; font-family:Verdana; font-weight:bold; background-color: rgb(41, 160, 184);">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

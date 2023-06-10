@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <title>Rumah Sehat</title>
+  <head th:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  </head>
+  <head th:fragment="js">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFIBw8HfCJo="
+            crossorigin="anonymous"
+    ></script>
+    <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+  </head>
+</head>
+<body>
+<nav th:fragment="navbar(page)" class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(41, 160, 184);">
+  <div class="container" style="margin-left: 10px;">
+    <a class="navbar-brand font-weight-bold" style="font-size:22px;" href="/">Rumah Sehat</a>
+    <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li th:classappend="${page == 'Beranda'} ? active : ''" class="nav-item">
+          <a class="nav-link" href="/">Beranda</a>
+        </li>
+        <li th:classappend="${page == 'Resep'} ? active : ''"class="nav-item" sec:authorize="hasAnyAuthority('Admin','Apoteker')">
+          <a class="nav-link" href="/resep">Resep</a>
+        </li>
+        <li th:classappend="${page == 'Obat'} ? active : ''"class="nav-item" sec:authorize="hasAnyAuthority('Admin','Apoteker')">
+          <a class="nav-link" href="/obat/viewall">Obat</a>
+        </li>
+        <li th:classappend="${page == 'Appointment'} ? active : ''"class="nav-item" sec:authorize="hasAnyAuthority('Admin','Dokter')">
+          <a class="nav-link" href="/appointment/viewall">Jadwal Appointment</a>
+        </li>
+        <li th:classappend="${page == 'User'} ? active : ''"class="nav-item" sec:authorize="hasAuthority('Admin')">
+          <a class="nav-link" href="/manajemen">Manajemen Pengguna</a>
+        </li>
+        <li th:classappend="${page == 'Tagihan'} ? active : ''"class="nav-item" sec:authorize="hasAuthority('Admin')">
+          <a class="nav-link" href="/manajemen">Chart Tagihan</a>
+        </li>
+      </ul>
+    </div>
+    <ul class="navbar-nav pull-right">
+      <a class="nav-item nav-link text-text-secondary" th:href="@{/logout-sso}">Logout</a>
+    </ul>
+  </div>
+</nav>
+</body>
+</html>

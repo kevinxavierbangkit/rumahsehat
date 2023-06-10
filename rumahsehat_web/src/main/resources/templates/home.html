@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+  <title>Rumah Sehat</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('Beranda')"></nav>
+<div class="d-flex justify-content-center">
+  <div class="m-4">
+    <br><br><br><br>
+    <p style="border: solid 1px white; background-color:rgb(41, 160, 184) ; padding: 40px; padding-right: 150px;
+      padding-left: 150px; margin: 0; text-align: center; line-height: 100px; font-family:Verdana; border-radius: 12px;
+      color: white; font-size: 30px; font-weight: bold">Welcome to Rumah Sehat!</p>
+    <br><br>
+    <div class="d-flex justify-content-center" >
+      <a th:href="@{/resep}" class="mx-2 btn text-light" style="padding-left:25px; padding-right:25px; font-family:Verdana; font-weight:bold; background-color: rgb(41, 160, 184);" sec:authorize="hasAnyAuthority('Admin','Apoteker')">Resep</a>
+      <a th:href="@{/obat/viewall}" class="mx-2 btn text-light" style="padding-left:22px; padding-right:22px; font-family:Verdana; font-weight:bold; background-color: rgb(41, 160, 184);" sec:authorize="hasAnyAuthority('Admin','Apoteker')">Obat</a>
+      <a th:href="@{/appointment/viewall}" class="mx-2 btn text-light" style="padding-left:50px; padding-right:50px; font-family:Verdana; font-weight:bold; background-color: rgb(41, 160, 184);" sec:authorize="hasAnyAuthority('Admin','Dokter')">Appointment</a>
+      <a th:href="@{/manajemen}" class="mx-2 btn text-light" style="padding-left:50px; padding-right:50px;
+      font-family:Verdana; font-weight:bold; background-color: rgb(41, 160, 184);" sec:authorize="hasAuthority('Admin')">Pengguna</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

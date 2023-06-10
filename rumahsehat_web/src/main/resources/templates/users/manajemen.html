@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rumah Sehat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar('User')"></nav>
+<div class="d-flex justify-content-center">
+    <div class="m-4">
+        <br><br>
+        <div class="d-flex justify-content-center">
+            <h1 style="border: solid 1px white; background-color:rgb(41, 160, 184) ; padding: 40px; padding-right: 150px;
+                padding-left: 150px; margin: 0; text-align: center; line-height: 100px; font-family:Verdana; border-radius: 12px;
+                color: white; font-size: 30px; font-weight: bold" >Manajemen User</h1>
+        </div>
+        <br><br><br>
+        <div class="d-flex justify-content-center">
+            <h3>List of Features:</h3>
+        </div>
+        <br>
+        <div class="d-flex justify-content-center">
+            <a th:href="@{/manajemen/dokter}" class="mx-2 btn text-light" style="padding-left:22px; padding-right:22px; font-family:Verdana; font-weight:bold; background-color: rgb(41, 160, 184);">Dokter</a>
+            <a th:href="@{/manajemen/apoteker}" class="mx-2 btn text-light" style="padding-left:22px; padding-right:22px; font-family:Verdana; font-weight:bold; background-color: rgb(41, 160, 184);">Apoteker</a>
+            <a th:href="@{/manajemen/pasien}" class="mx-2 btn text-light" style="padding-left:22px; padding-right:22px; font-family:Verdana; font-weight:bold; background-color: rgb(41, 160, 184);">Pasien</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

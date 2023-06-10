@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <title>RumahSehat</title>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('Tagihan')"></nav>
+
+<div class="d-flex justify-content-center">
+  <div class="container my-5">
+    <div class="d-flex justify-content-center">
+      <h2 style="font-weight: bold; font-size: 28px"> Tagihan yang terbuat dalam periode bulanan</h2>
+      <br><br>
+    </div>
+    <div class="d-flex justify-content-center">
+
+
+      <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+      <script th:inline="javascript">
+          /*<![CDATA[*/
+          var xMonth = /*[[${day}]]*/ 'default'
+          var yIncome = /*[[${totalTagihan}]]*/ 'default';
+          console.log(yIncome);
+
+          /*]]>*/
+
+          new Chart("myChart", {
+              type: "line",
+              data: {
+                  labels: xMonth,
+                  datasets: [{
+                      fill: false,
+                      lineTension: 0,
+                      backgroundColor: "rgba(0,0,255,1.0)",
+                      borderColor: "rgba(0,0,255,0.1)",
+                      data: yIncome
+                  }]
+              },
+              options: {
+                  legend: {display: false},
+              }
+          });
+      </script>
+    </div>
+  </div>
+</div>
+</body>
+</html>

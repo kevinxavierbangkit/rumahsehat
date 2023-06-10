@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Rumah Sehat</title>
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar('User')"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2 class="d-flex justify-content-center">List Pasien</h2>
+                <br>
+<!--                <div class="d-flex justify-content-center">-->
+<!--                    <a th:href="@{/manajemen/apoteker/add}" class="mx-2 btn btn-outline-warning">+ Tambah Apoteker</a>-->
+<!--                </div>-->
+                <br><br>
+                <div th:if="*{listPasien.size() != 0}">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Saldo</th>
+                            <th>Umur</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="pasien, iterationStatus : ${listPasien}">
+                            <td th:text="${iterationStatus.count}" ></td>
+                            <td th:text="${pasien.nama}"></td>
+                            <td th:text="${pasien.username}"></td>
+                            <td th:text="${pasien.email}"></td>
+                            <td th:text="${pasien.saldo}"></td>
+                            <td th:text="${pasien.umur}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:unless="*{listPasien.size() != 0}">
+                    <h2 th:text="'Tidak ada Pasien'"></h2>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+</body>
+</html>
